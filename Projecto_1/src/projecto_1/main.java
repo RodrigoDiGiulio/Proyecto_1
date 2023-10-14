@@ -5,8 +5,9 @@
 package projecto_1;
 
 /**
- *
+ * Este es el main donde se ejecuta todo el programa
  * @author RDG
+ * @version 10/14/2023
  */
 public class main {
 
