@@ -5,8 +5,10 @@
 package projecto_1.Classes;
 
 /**
- *
+ * Esta es la clase socialUser, que se encarga de tener la data del usuario,
+ * tanto como se identifica comom a quien sigue
  * @author RDG
+ * @version 10/14/2023
  */
 public class socialUser {
     //Atributos

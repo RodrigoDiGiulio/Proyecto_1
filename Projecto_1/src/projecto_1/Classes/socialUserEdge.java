@@ -5,8 +5,14 @@
 package projecto_1.Classes;
 
 /**
- *
+ * Esta es la clase socialUserEdge, que es la que se encarga de ver las
+ * conexiones entre usuario A y usuario B.
+ * A ->  B
+ * A <-  B
+ * A <-> B
+ * A <!> B
  * @author RDG
+ * @version 10/14/2023
  */
 public class socialUserEdge {
     //Atributos
@@ -18,31 +24,7 @@ public class socialUserEdge {
         this.startUserEdge = startUserEdge;
         this.endUserEdge = endUserEdge;
         this.isLinear = isLinear;
-    }
-
-    public String getStartUserEdge() {
-        return startUserEdge;
-    }
-
-    public void setStartUserEdge(String startUserEdge) {
-        this.startUserEdge = startUserEdge;
-    }
-
-    public String getEndUserEdge() {
-        return endUserEdge;
-    }
-
-    public void setEndUserEdge(String endUserEdge) {
-        this.endUserEdge = endUserEdge;
-    }
-
-    public boolean getIsLinear() {
-        return isLinear;
-    }
-
-    public void setIsLinear(boolean isLinear) {
-        this.isLinear = isLinear;
-    }
+    }    
     
     
     
