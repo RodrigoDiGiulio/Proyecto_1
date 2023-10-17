@@ -5,8 +5,10 @@
 package projecto_1.Classes;
 
 /**
- *
+ * La clase kosaraju, el algoritmo
  * @author RDG
+ * @param <T>
+ * @version 10/16/2023
  */
 public class kosaraju {
     
