@@ -13,9 +13,9 @@ package projecto_1.Classes;
 public class socialUser {
     //Atributos
     private String socialUsername;
-    private int[] follow;
+    private String[] follow;
 
-    public socialUser(String socialUsername, int[] follow) {
+    public socialUser(String socialUsername, String[] follow) {
         this.socialUsername = socialUsername;
         this.follow = follow;
     }
@@ -28,11 +28,11 @@ public class socialUser {
         this.socialUsername = socialUsername;
     }
 
-    public int[] getFollow() {
+    public String[] getFollow() {
         return follow;
     }
 
-    public void setFollow(int[] follow) {
+    public void setFollow(String[] follow) {
         this.follow = follow;
     }
     

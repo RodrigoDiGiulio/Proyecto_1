@@ -4,13 +4,13 @@
  */
 package projecto_1;
 
-import projecto_1.Classes.Matriz_de_adyacencia;
 import projecto_1.Classes.stack;
+import projecto_1.Classes.adjMatrix;
 
 /**
  * Este es el main donde se ejecuta todo el programa
  * @author RDG
- * @version 10/14/2023
+ * @version 10/16/2023
  */
 public class main {
 
@@ -19,19 +19,13 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Matriz_de_adyacencia test = new Matriz_de_adyacencia(6);
-        test.agregar(0,1);
-        test.agregar(0,5);
-        test.agregar(1,0);
-        test.agregar(1,2);
-        test.agregar(1,3);
-        test.agregar(2,1);
-        test.agregar(2,4);
-        test.agregar(2,5);
-        test.agregar(3,4);
-        test.agregar(4,2);
+        adjMatrix test = new adjMatrix(3);
+        test.addMatrixValue(0, 0);
+        test.addMatrixValue(1, 0);
+        test.addMatrixValue(0, 1);
+        test.addMatrixValue(1, 1); 
         
-        test.imprimir();
+        test.print();
         
         stack test2 = new stack();
         test2.push(0);
