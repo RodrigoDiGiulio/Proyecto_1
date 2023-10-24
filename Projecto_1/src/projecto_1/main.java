@@ -4,7 +4,7 @@
  */
 package projecto_1;
 
-import JFileChooserClasses.Frame;
+import JFileChooserClasses.Archivo;
 import projecto_1.Classes.Stack;
 import projecto_1.Classes.AdjMatrix;
 import projecto_1.Classes.List;
@@ -22,8 +22,7 @@ public class main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Frame miVentana = new Frame();
-        miVentana.setVisible(true);
-        
+        Archivo ventana1 = new Archivo();
+        ventana1.setVisible(true);
     }
 }
