@@ -5,6 +5,8 @@
  */
 package JFileChooserClasses;
 
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.SingleGraph;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -96,6 +98,42 @@ public class Archivo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private String abrirArchivo() {
+            String aux=""; 		
+            texto="";
+
+            try
+            {
+                    /*llamamos el metodo que permite cargar la ventana*/
+            fileChooser.showOpenDialog(this);
+            /*abrimos el archivo seleccionado*/
+                    File abre = fileChooser.getSelectedFile();
+
+                    /*recorremos el archivo, lo leemos para plasmarlo
+                     *en el area de texto*/
+                    if(abre!=null)
+                    { 				
+                            FileReader archivos=new FileReader(abre);
+                            BufferedReader lee=new BufferedReader(archivos);
+                            while((aux=lee.readLine())!=null)
+                                    {
+                                     texto+= aux+ "\n";
+                                    }
+
+                            lee.close();
+                    } 			
+            }
+            catch(IOException ex)
+            {
+              JOptionPane.showMessageDialog(null,ex+"" +
+                            "\nNo se ha encontrado el archivo",
+                            "ADVERTENCIA!!!",JOptionPane.WARNING_MESSAGE);
+            }
+            firstRun = false;
+            return texto;
+           
+    } 
+    
+    /*private String abrirArchivo() {
         texto = "";
         boolean usuariosSection = false;
         boolean relacionesSection = false;
@@ -115,14 +153,14 @@ public class Archivo extends javax.swing.JFrame {
                         usuariosSection = true;
                         relacionesSection = false;
                         formatoValido = true;
-                        texto += line + "\n"; // Agregar el título "usuarios"
-                        continue; // Saltar la línea del encabezado
+                        texto += line + "\n"; 
+                        continue; 
                     } else if (line.equals("relaciones")) {
                         usuariosSection = false;
                         relacionesSection = true;
                         formatoValido = true;
-                        texto += line + "\n"; // Agregar el título "relaciones"
-                        continue; // Saltar la línea del encabezado
+                        texto += line + "\n";
+                        continue; 
                     }
 
                     if (usuariosSection && line.startsWith("@")) {
@@ -130,7 +168,6 @@ public class Archivo extends javax.swing.JFrame {
                     } else if (relacionesSection && line.matches("@\\w+, @\\w+")) {
                         texto += line + "\n";
                     } else {
-                        // Formato no válido
                         formatoValido = false;
                         break;
                     }
@@ -143,7 +180,7 @@ public class Archivo extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null,
                     "Error: El archivo no cumple con el formato requerido.",
                     "ADVERTENCIA!!!", JOptionPane.WARNING_MESSAGE);
-                texto = ""; // Reiniciar el texto
+                texto = "";
             }
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex + "" +
@@ -154,7 +191,7 @@ public class Archivo extends javax.swing.JFrame {
         firstRun = false;
         return texto;
     }
-
+*/
     private void iniciarGrafo(){ 
         String[] dataUsr = null;
         String[] dataFollow = null;
@@ -237,9 +274,50 @@ public class Archivo extends javax.swing.JFrame {
         return texto;
     }
 
+    public Graph MostrarGrafo() {
+        Graph grafo = new SingleGraph("Grafo");
+        System.setProperty("org.graphstream.ui", "swing");
+        try {
+            File abre = fileChooser.getSelectedFile();
+
+            if (abre != null) {
+                FileReader archivos = new FileReader(abre);
+                BufferedReader lee = new BufferedReader(archivos);
+                String line;
+                String section = "";
+                while ((line = lee.readLine()) != null) {
+                    if (line.equals("usuarios")) {
+                        section = "usuarios";
+                    } else if (line.equals("relaciones")) {
+                        section = "relaciones";
+                    } else {
+                        if (section.equals("usuarios")) {
+                            // Agrega los nodos al grafo
+                            grafo.addNode(line);
+                        } else if (section.equals("relaciones")) {
+                            // Agregar las relaciones al grafo
+                            String[] usuarios = line.split(", ");
+                            if (usuarios.length == 2) {
+                                grafo.addEdge(usuarios[0] + "_" + usuarios[1], usuarios[0], usuarios[1]);
+                            }
+                        }
+                    }
+                }
+                lee.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return grafo;
+    } 
     
     private void IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarActionPerformed
         iniciarGrafo();
+        this.setVisible(false);
+        Graph grafo = MostrarGrafo();
+        grafo.display();
+        MostrarG ventana2 = new MostrarG(grafo);
+        ventana2.setVisible(true);
     }//GEN-LAST:event_IniciarActionPerformed
 
     private void AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirActionPerformed

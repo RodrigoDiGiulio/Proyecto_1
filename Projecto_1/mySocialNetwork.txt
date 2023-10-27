@@ -7,13 +7,13 @@ usuarios
 @F
 
 relaciones
-@A,@B
-@A,@D
-@B,@C
-@C,@A
-@C,@D
-@D,@B
-@D,@F
-@E,@B
-@E,@D
-@F,@E
+@A, @B
+@A, @D
+@B, @C
+@C, @A
+@C, @D
+@D, @B
+@D, @F
+@E, @B
+@E, @D
+@F, @E
