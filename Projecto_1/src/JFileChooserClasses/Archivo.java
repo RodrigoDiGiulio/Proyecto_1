@@ -14,6 +14,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import org.graphstream.graph.implementations.MultiGraph;
 import projecto_1.Classes.AdjMatrix;
 import projecto_1.Classes.DataInterpreter;
 import projecto_1.Classes.List;
@@ -275,7 +276,7 @@ public class Archivo extends javax.swing.JFrame {
     }
 
     public Graph MostrarGrafo() {
-        Graph grafo = new SingleGraph("Grafo");
+        Graph grafo = new MultiGraph("Grafo");
         System.setProperty("org.graphstream.ui", "swing");
         try {
             File abre = fileChooser.getSelectedFile();

@@ -7,13 +7,16 @@ package JFileChooserClasses;
 
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
+import org.graphstream.ui.swing_viewer.ViewPanel;
+import org.graphstream.ui.view.Viewer;
+import org.graphstream.graph.Graph;
 
 /**
  *
  * @author Ignacio
  */
 public class MostrarG extends javax.swing.JFrame {
-    private static Graph grafo;    
+    private static Graph grafo;   
     /**
      * Creates new form MostrarG
      */
@@ -22,6 +25,7 @@ public class MostrarG extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.grafo = grafo;
+        
     }
 
     /**
@@ -33,10 +37,24 @@ public class MostrarG extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         CargarArchivo = new javax.swing.JButton();
         Añadir = new javax.swing.JButton();
         EliminarUsuario = new javax.swing.JButton();
+        graf = new javax.swing.JPanel();
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -61,6 +79,19 @@ public class MostrarG extends javax.swing.JFrame {
 
         EliminarUsuario.setText("Eliminar Usuario");
         jPanel1.add(EliminarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
+
+        javax.swing.GroupLayout grafLayout = new javax.swing.GroupLayout(graf);
+        graf.setLayout(grafLayout);
+        grafLayout.setHorizontalGroup(
+            grafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+        grafLayout.setVerticalGroup(
+            grafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 240, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(graf, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 360, 240));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
@@ -116,6 +147,9 @@ public class MostrarG extends javax.swing.JFrame {
     private javax.swing.JButton Añadir;
     private javax.swing.JButton CargarArchivo;
     private javax.swing.JButton EliminarUsuario;
+    private javax.swing.JPanel graf;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPopupMenu jPopupMenu1;
     // End of variables declaration//GEN-END:variables
 }
