@@ -4,7 +4,7 @@
 **Integrantes:**  
 Rodrigo Di Giulio  
 Andres Perez  
-Jesus Angulo  
+Jesus Angulo (Retiro)  
 
 # Instrucciones
 ## Contexto preliminar
