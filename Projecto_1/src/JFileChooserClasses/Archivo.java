@@ -97,44 +97,8 @@ public class Archivo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+     
     private String abrirArchivo() {
-            String aux=""; 		
-            texto="";
-
-            try
-            {
-                    /*llamamos el metodo que permite cargar la ventana*/
-            fileChooser.showOpenDialog(this);
-            /*abrimos el archivo seleccionado*/
-                    File abre = fileChooser.getSelectedFile();
-
-                    /*recorremos el archivo, lo leemos para plasmarlo
-                     *en el area de texto*/
-                    if(abre!=null)
-                    { 				
-                            FileReader archivos=new FileReader(abre);
-                            BufferedReader lee=new BufferedReader(archivos);
-                            while((aux=lee.readLine())!=null)
-                                    {
-                                     texto+= aux+ "\n";
-                                    }
-
-                            lee.close();
-                    } 			
-            }
-            catch(IOException ex)
-            {
-              JOptionPane.showMessageDialog(null,ex+"" +
-                            "\nNo se ha encontrado el archivo",
-                            "ADVERTENCIA!!!",JOptionPane.WARNING_MESSAGE);
-            }
-            firstRun = false;
-            return texto;
-           
-    } 
-    
-    /*private String abrirArchivo() {
         texto = "";
         boolean enSeccionUsuarios = false;
         boolean enSeccionRelaciones = false;
@@ -192,7 +156,7 @@ public class Archivo extends javax.swing.JFrame {
         firstRun = false;
         return texto;
     }
-*/
+
     private void iniciarGrafo(){ 
         String[] dataUsr = null;
         String[] dataFollow = null;
