@@ -136,45 +136,45 @@ public class Archivo extends javax.swing.JFrame {
     
     /*private String abrirArchivo() {
         texto = "";
-        boolean usuariosSection = false;
-        boolean relacionesSection = false;
+        boolean enSeccionUsuarios = false;
+        boolean enSeccionRelaciones = false;
         boolean formatoValido = false;
 
         try {
             fileChooser.showOpenDialog(this);
-            File abre = fileChooser.getSelectedFile();
+            File archivoSeleccionado = fileChooser.getSelectedFile();
 
-            if (abre != null) {
-                FileReader archivos = new FileReader(abre);
-                BufferedReader lee = new BufferedReader(archivos);
+            if (archivoSeleccionado != null) {
+                FileReader archivo = new FileReader(archivoSeleccionado);
+                BufferedReader lector = new BufferedReader(archivo);
 
-                String line;
-                while ((line = lee.readLine()) != null) {
-                    if (line.equals("usuarios")) {
-                        usuariosSection = true;
-                        relacionesSection = false;
+                String linea;
+                while ((linea = lector.readLine()) != null) {
+                    if (linea.equals("usuarios")) {
+                        enSeccionUsuarios = true;
+                        enSeccionRelaciones = false;
                         formatoValido = true;
-                        texto += line + "\n"; 
+                        texto += linea + "\n"; 
                         continue; 
-                    } else if (line.equals("relaciones")) {
-                        usuariosSection = false;
-                        relacionesSection = true;
+                    } else if (linea.equals("relaciones")) {
+                        enSeccionUsuarios = false;
+                        enSeccionRelaciones = true;
                         formatoValido = true;
-                        texto += line + "\n";
+                        texto += linea + "\n";
                         continue; 
                     }
 
-                    if (usuariosSection && line.startsWith("@")) {
-                        texto += line + "\n";
-                    } else if (relacionesSection && line.matches("@\\w+, @\\w+")) {
-                        texto += line + "\n";
+                    if (enSeccionUsuarios && linea.startsWith("@")) {
+                        texto += linea + "\n";
+                    } else if (enSeccionRelaciones && linea.matches("@\\w+, @\\w+")) {
+                        texto += linea + "\n";
                     } else {
                         formatoValido = false;
                         break;
                     }
                 }
 
-                lee.close();
+                lector.close();
             }
 
             if (!formatoValido) {
@@ -275,7 +275,7 @@ public class Archivo extends javax.swing.JFrame {
         return texto;
     }
 
-    public Graph MostrarGrafo() {
+    private Graph MostrarGrafo() {
         Graph grafo = new MultiGraph("Grafo");
         System.setProperty("org.graphstream.ui", "swing");
         try {
@@ -284,20 +284,18 @@ public class Archivo extends javax.swing.JFrame {
             if (abre != null) {
                 FileReader archivos = new FileReader(abre);
                 BufferedReader lee = new BufferedReader(archivos);
-                String line;
-                String section = "";
-                while ((line = lee.readLine()) != null) {
-                    if (line.equals("usuarios")) {
-                        section = "usuarios";
-                    } else if (line.equals("relaciones")) {
-                        section = "relaciones";
+                String linea;
+                String seccion = "";
+                while ((linea = lee.readLine()) != null) {
+                    if (linea.equals("usuarios")) {
+                        seccion = "usuarios";
+                    } else if (linea.equals("relaciones")) {
+                        seccion = "relaciones";
                     } else {
-                        if (section.equals("usuarios")) {
-                            // Agrega los nodos al grafo
-                            grafo.addNode(line);
-                        } else if (section.equals("relaciones")) {
-                            // Agregar las relaciones al grafo
-                            String[] usuarios = line.split(", ");
+                        if (seccion.equals("usuarios")) {
+                            grafo.addNode(linea);
+                        } else if (seccion.equals("relaciones")) {
+                            String[] usuarios = linea.split(", ");
                             if (usuarios.length == 2) {
                                 grafo.addEdge(usuarios[0] + "_" + usuarios[1], usuarios[0], usuarios[1]);
                             }
@@ -312,15 +310,6 @@ public class Archivo extends javax.swing.JFrame {
         return grafo;
     } 
     
-    private void IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarActionPerformed
-        iniciarGrafo();
-        this.setVisible(false);
-        Graph grafo = MostrarGrafo();
-        grafo.display();
-        MostrarG ventana2 = new MostrarG(grafo);
-        ventana2.setVisible(true);
-    }//GEN-LAST:event_IniciarActionPerformed
-
     private void AbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AbrirActionPerformed
         String archivo=abrirArchivo();
         jTextArea1.setText(archivo);
@@ -329,6 +318,16 @@ public class Archivo extends javax.swing.JFrame {
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
         guardarArchivo();
     }//GEN-LAST:event_GuardarActionPerformed
+
+    private void IniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IniciarActionPerformed
+        iniciarGrafo();
+        this.setVisible(false);
+        Graph grafo = MostrarGrafo();
+        grafo.display();
+        String archivo = abrirArchivo();
+        MostrarG ventana2 = new MostrarG(grafo, archivo);
+        ventana2.setVisible(true);
+    }//GEN-LAST:event_IniciarActionPerformed
 
     /**
      * @param args the command line arguments

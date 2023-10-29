@@ -10,22 +10,29 @@ import org.graphstream.graph.implementations.SingleGraph;
 import org.graphstream.ui.swing_viewer.ViewPanel;
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.graph.Graph;
+import org.graphstream.ui.swing_viewer.SwingViewer;
 
 /**
  *
  * @author Ignacio
  */
 public class MostrarG extends javax.swing.JFrame {
-    private static Graph grafo;   
+    private static Graph grafo;
+    private static String archivo;
     /**
      * Creates new form MostrarG
      */
-    public MostrarG(Graph grafo) {
+    public MostrarG(Graph grafo, String archivo) {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
         this.grafo = grafo;
+        this.archivo = archivo;
         
+        SwingViewer swing = new SwingViewer(grafo, Viewer.ThreadingModel.GRAPH_IN_ANOTHER_THREAD);
+        swing.enableAutoLayout();
+        ViewPanel view = (ViewPanel) swing.addDefaultView(false);
+        graf.add(view);
     }
 
     /**
@@ -41,8 +48,7 @@ public class MostrarG extends javax.swing.JFrame {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         jPanel1 = new javax.swing.JPanel();
         CargarArchivo = new javax.swing.JButton();
-        Añadir = new javax.swing.JButton();
-        EliminarUsuario = new javax.swing.JButton();
+        Modificar = new javax.swing.JButton();
         graf = new javax.swing.JPanel();
 
         javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
@@ -67,46 +73,45 @@ public class MostrarG extends javax.swing.JFrame {
                 CargarArchivoActionPerformed(evt);
             }
         });
-        jPanel1.add(CargarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 260, -1, -1));
+        jPanel1.add(CargarArchivo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, -1, -1));
 
-        Añadir.setText("Añadir Usuario");
-        Añadir.addActionListener(new java.awt.event.ActionListener() {
+        Modificar.setText("Modificar ");
+        Modificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AñadirActionPerformed(evt);
+                ModificarActionPerformed(evt);
             }
         });
-        jPanel1.add(Añadir, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 260, -1, -1));
-
-        EliminarUsuario.setText("Eliminar Usuario");
-        jPanel1.add(EliminarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 260, -1, -1));
+        jPanel1.add(Modificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
 
         javax.swing.GroupLayout grafLayout = new javax.swing.GroupLayout(graf);
         graf.setLayout(grafLayout);
         grafLayout.setHorizontalGroup(
             grafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 360, Short.MAX_VALUE)
+            .addGap(0, 370, Short.MAX_VALUE)
         );
         grafLayout.setVerticalGroup(
             grafLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 240, Short.MAX_VALUE)
         );
 
-        jPanel1.add(graf, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 360, 240));
+        jPanel1.add(graf, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 370, 240));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 430, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void CargarArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarArchivoActionPerformed
         this.setVisible(false);
         Archivo ventana1 = new Archivo();
         ventana1.setVisible(true);
     }//GEN-LAST:event_CargarArchivoActionPerformed
 
-    private void AñadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_AñadirActionPerformed
+    private void ModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarActionPerformed
+        this.setVisible(false);
+        Modificar ventana3 = new Modificar(archivo);
+        ventana3.setVisible(true);
+    }//GEN-LAST:event_ModificarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -138,15 +143,14 @@ public class MostrarG extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MostrarG(grafo).setVisible(true);
+                new MostrarG(grafo, archivo).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Añadir;
     private javax.swing.JButton CargarArchivo;
-    private javax.swing.JButton EliminarUsuario;
+    private javax.swing.JButton Modificar;
     private javax.swing.JPanel graf;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JPanel jPanel1;
