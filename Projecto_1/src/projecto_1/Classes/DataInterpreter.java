@@ -13,7 +13,7 @@ package projecto_1.Classes;
  */
 public class DataInterpreter {
     //Atributos
-    private String dafaultData = "usuarios\n@pepe\n@mazinger\n@juanc\n@xoxojaime\n@tuqui33\n@sancho23\n@terciopelo\n@caribedoble\n@africa\n@totalfree\n@radiogaga\n@cipriano\n@newageforever\n\nrelaciones\n@pepe, @mazinger\n@mazinger, @juanc\n@mazinger, @tuqui33\n@tuqui33, @xoxojaime\n@xoxojaime, @pepe\n@juanc, @sancho23\n@sancho23, @mazinger\n@sancho23, @terciopelo\n@terciopelo, @newageforever\n@terciopelo, @caribedoble\n@caribedoble, @africa\n@africa, @cipriano\n@cipriano, @totalfree\n@cipriano, @radiogaga\n@totalfree, @africa\n@totalfree, @radiogaga\n@radiogaga, @caribedoble";
+    private String dafaultData = "usuarios\n@pepe\n@mazinger\n@juanc\n@xoxojaime\n@tuqui33\n@sancho23\n@terciopelo\n@caribedoble\n@africa\n@totalfree\n@radiogaga\n@cipriano\n@newageforever\nrelaciones\n@pepe, @mazinger\n@mazinger, @juanc\n@mazinger, @tuqui33\n@tuqui33, @xoxojaime\n@xoxojaime, @pepe\n@juanc, @sancho23\n@sancho23, @mazinger\n@sancho23, @terciopelo\n@terciopelo, @newageforever\n@terciopelo, @caribedoble\n@caribedoble, @africa\n@africa, @cipriano\n@cipriano, @totalfree\n@cipriano, @radiogaga\n@totalfree, @africa\n@totalfree, @radiogaga\n@radiogaga, @caribedoble\n";
     private String data;
 
     public DataInterpreter() {
@@ -29,7 +29,7 @@ public class DataInterpreter {
         String tempFollowString = "";
         dafaultData = dafaultData.replaceAll("usuarios\n","");
 //        dafaultData = dafaultData.replaceAll("\nrelaciones\n","");
-        String[] dataArray = dafaultData.split("\n\nrelaciones\n");
+        String[] dataArray = dafaultData.split("\nrelaciones\n");
         tempUsrString = dataArray[0];
         tempFollowString = dataArray[1];
         tempUsr = tempUsrString.split("\n");
@@ -52,7 +52,7 @@ public class DataInterpreter {
         String tempUsrString = "";
         String tempFollowString = "";
         data = data.replaceAll("usuarios\n","");
-        String[] dataArray = data.split("\n\nrelaciones\n");
+        String[] dataArray = data.split("\nrelaciones\n");
         tempUsrString = dataArray[0];
         tempFollowString = dataArray[1];
         tempUsr = tempUsrString.split("\n");
