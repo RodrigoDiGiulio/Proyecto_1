@@ -1,0 +1,20 @@
+usuarios
+@A
+@B
+@C
+@D
+@E
+@F
+@1
+@2
+@3
+@4
+relaciones
+@A, @B
+@B, @C
+@C, @A
+@D, @B
+@E, @D
+@1, @2
+@2, @3
+@3, @4
